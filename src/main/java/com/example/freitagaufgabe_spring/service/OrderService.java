@@ -26,4 +26,8 @@ public class OrderService {
         return orderRepository.create();
 
     }
+
+    public Order addProduct(String orderId, String productName) {
+        return orderRepository.addProduct(orderId,productName);
+    }
 }

@@ -5,10 +5,7 @@ import com.example.freitagaufgabe_spring.model.Product;
 import com.example.freitagaufgabe_spring.service.OrderService;
 import com.example.freitagaufgabe_spring.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,6 +38,12 @@ public class OrderController {
     @PostMapping("/order")
     public Order createOrder(){
         return this.orderService.createOrder();
+    }
+
+    @PutMapping("/order/{orderId}")
+    public Order addProducts(@PathVariable String orderId, @RequestBody String productName){
+
+        return this.orderService.addProduct(orderId,productName);
     }
 
 

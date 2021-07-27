@@ -2,7 +2,10 @@ package com.example.freitagaufgabe_spring.repository;
 
 
 import com.example.freitagaufgabe_spring.model.Order;
+import com.example.freitagaufgabe_spring.model.Product;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,5 +35,17 @@ public class OrderRepository {
     Order order = new Order();
          orders.add(order);
          return order;
+    }
+    //evtl. eine Ebene vorher -> In ProductService impl.
+    public Order addProduct(String orderId,String productName) {
+        for(Order order:orders){
+            if (order.getId().equals(orderId)){
+               Product product = productRepository.getProductByName(productName);
+               return order.add(productName);
+            }
+
+        }
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+
     }
 }

@@ -24,4 +24,10 @@ public class Order {
     public void setProducts(List<Product> products) {
         this.products = products;
     }
+
+    public Order add(String productName) {
+
+
+        return order;
+    }
 }

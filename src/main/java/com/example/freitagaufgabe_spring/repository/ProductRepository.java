@@ -24,4 +24,15 @@ public class ProductRepository {
         return products;
     }
 
+    public Product getProductByName(String productName){
+        for(Product product:products){
+            if(product.getProductName().equals(productName)){
+                return product;
+            }
+
+        }
+
+
+    }
+
 }
