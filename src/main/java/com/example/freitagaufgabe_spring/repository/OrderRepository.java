@@ -1,6 +1,7 @@
 package com.example.freitagaufgabe_spring.repository;
 
-import org.springframework.core.annotation.Order;
+
+import com.example.freitagaufgabe_spring.model.Order;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -11,14 +12,19 @@ public class OrderRepository {
     private List<Order> orders;
 
 
-    public OrderRepository(List<Order> orders) {
-        this.orders = orders;
+    public OrderRepository() {
+        orders = new ArrayList<>(List.of(
+                new Order(),
+                new Order(),
+                new Order()
+        ));
+
     }
 
 
     public List<Order> findAll() {
 
 
-        return null;
+        return orders;
     }
 }

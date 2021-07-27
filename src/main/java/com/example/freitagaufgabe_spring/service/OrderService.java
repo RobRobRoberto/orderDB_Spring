@@ -1,8 +1,8 @@
 package com.example.freitagaufgabe_spring.service;
 
+import com.example.freitagaufgabe_spring.model.Order;
 import com.example.freitagaufgabe_spring.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
