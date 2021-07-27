@@ -27,4 +27,10 @@ public class OrderRepository {
 
         return orders;
     }
+
+    public Order create() {
+    Order order = new Order();
+         orders.add(order);
+         return order;
+    }
 }

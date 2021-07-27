@@ -38,7 +38,10 @@ public class OrderController {
         return this.productService.getProducts();
     }
 
-
+    @PostMapping("/order")
+    public Order createOrder(){
+        return this.orderService.createOrder();
+    }
 
 
 

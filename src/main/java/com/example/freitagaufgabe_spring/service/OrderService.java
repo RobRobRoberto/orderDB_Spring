@@ -21,4 +21,9 @@ public class OrderService {
     public List<Order> getOrders() {
         return orderRepository.findAll();
     }
+
+    public Order createOrder() {
+        return orderRepository.create();
+
+    }
 }
