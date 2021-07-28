@@ -23,4 +23,7 @@ public class ProductService {
     }
 
 
+    public Product getProductByName(String productName) {
+        return productRepository.getProductByName(productName);
+    }
 }

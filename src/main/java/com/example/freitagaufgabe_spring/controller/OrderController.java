@@ -30,6 +30,12 @@ public class OrderController {
 
     }
 
+    @GetMapping("/products/{name}")
+    public Product getProducts(@PathVariable String name){
+        return this.productService.getProductByName(name);
+
+    }
+
     @GetMapping("/products")
     public List<Product> getProducts(){
         return this.productService.getProducts();
