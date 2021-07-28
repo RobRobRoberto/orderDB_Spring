@@ -40,8 +40,11 @@ public class OrderRepository {
     public Order addProduct(String orderId,String productName) {
         for(Order order:orders){
             if (order.getId().equals(orderId)){
+                ProductRepository productRepository = new ProductRepository();
+                System.out.println(productName);
                Product product = productRepository.getProductByName(productName);
-               return order.add(productName);
+               order.add(product);
+               return order;
             }
 
         }

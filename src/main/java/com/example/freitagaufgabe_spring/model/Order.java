@@ -1,12 +1,13 @@
 package com.example.freitagaufgabe_spring.model;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class Order {
     private final String id;
-    private List<Product> products;
+    private List<Product> products = new ArrayList<>();
 
     public Order(){
         this.id = UUID.randomUUID().toString();
@@ -25,9 +26,8 @@ public class Order {
         this.products = products;
     }
 
-    public Order add(String productName) {
+    public void add(Product product) {
+        products.add((product));
 
-
-        return order;
     }
 }
