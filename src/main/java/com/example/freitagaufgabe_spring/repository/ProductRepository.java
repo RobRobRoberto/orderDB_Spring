@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 @Repository
 public class ProductRepository {
@@ -25,14 +26,14 @@ public class ProductRepository {
         return products;
     }
 
-    public Product getProductByName(String productName){
+    public Optional<Product> getProductByName(String productName){
         for(Product product:products){
             if(product.getProductName().equalsIgnoreCase(productName)){
-                return product;
+                return Optional.of(product);
             }
 
         }
-        return null;
+        return Optional.empty();
 
 
     }

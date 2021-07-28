@@ -9,6 +9,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class OrderRepository {
@@ -42,8 +43,22 @@ public class OrderRepository {
             if (order.getId().equals(orderId)){
                 ProductRepository productRepository = new ProductRepository();
                 System.out.println(productName);
-               Product product = productRepository.getProductByName(productName);
-               order.add(product);
+               Optional<Product> product = productRepository.getProductByName(productName);
+               order.add(product.get());
+               return order;
+            }
+
+        }
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+
+    }
+
+
+    public Order addProduct(String orderId,Product newProduct) {
+        for(Order order:orders){
+            if (order.getId().equals(orderId)){
+                ProductRepository productRepository = new ProductRepository();
+                order.add(newProduct);
                return order;
             }
 

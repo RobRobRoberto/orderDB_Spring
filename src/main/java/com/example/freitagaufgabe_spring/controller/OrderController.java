@@ -5,55 +5,44 @@ import com.example.freitagaufgabe_spring.model.Product;
 import com.example.freitagaufgabe_spring.service.OrderService;
 import com.example.freitagaufgabe_spring.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("api/order")
 public class OrderController {
 
     private final OrderService orderService;
-    private final ProductService productService;
+
 
     @Autowired
-    public OrderController(OrderService orderService, ProductService productService) {
+    public OrderController(OrderService orderService) {
         this.orderService = orderService;
-        this.productService = productService;
     }
 
-
-
-    @GetMapping("/order")
+    @GetMapping
     public List<Order> getOrders(){
         return this.orderService.getOrders();
 
     }
 
-    @GetMapping("/products/{name}")
-    public Product getProducts(@PathVariable String name){
-        return this.productService.getProductByName(name);
-
-    }
-
-    @GetMapping("/products")
-    public List<Product> getProducts(){
-        return this.productService.getProducts();
-    }
-
-    @PostMapping("/order")
+    @PostMapping
     public Order createOrder(){
         return this.orderService.createOrder();
     }
 
-    @PutMapping("/order/{orderId}")
+    @PutMapping("/{orderId}")
     public Order addProducts(@PathVariable String orderId, @RequestBody String productName){
 
-        return this.orderService.addProduct(orderId,productName);
+        try {
+            return this.orderService.addProduct(orderId, productName);
+        } catch (IllegalArgumentException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
     }
-
-
-
 
 
 }
